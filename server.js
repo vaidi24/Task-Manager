@@ -5,7 +5,7 @@ dotenv.config();
 const pool = require("./config/db");
 const taskRoutes = require("./routes/taskRoutes");
 const taskLogRoutes =require("./routes/taskLogRoutes");
-
+const attachmentRoutes = require("./routes/attachmentRoutes");
 const app = express();
 
 
@@ -14,6 +14,8 @@ app.use(cors());
 app.use(express.json());
 app.use("/tasks", taskRoutes);
 app.use("/tasks", taskLogRoutes);
+app.use( "/uploads",express.static("uploads"));
+app.use( "/attachments", attachmentRoutes);
 // DB Connection
 pool.connect()
     .then(() => {
